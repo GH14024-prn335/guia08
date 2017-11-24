@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+
+        <h:form>
+            <p:panel>
+                <h1><b>Busqueda de Usuario</b></h1>
+
+                <h:panelGrid columns="2" cellpadding="5" >
+                    <h:outputLabel for="name" value="Ingrese el titulo del Usuario a buscar: " />
+
+                    <p:inputText value="#{usuario.tar}">
+                        <p:ajax event="keyup" update="hol" />
+                    </p:inputText>
+
+
+                    <p:outputLabel value="Usuarios encontradas:" />
+
+                    <p:panel id="hol">
+                        <h:form id="holas">
+                            <p:dataTable value="#{usuario.findAll}" var="item" emptyMessage="No records found.">
+
+                                <p:column >
+                                    <f:facet name="" >
+                                        <h:outputText value="Nombre"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.nombres}"/>
+                                </p:column>
+
+
+                            </p:dataTable>
+
+                            <p:outputLabel value=" Datos encontrados:  #{meta.findAll().size()}" />
+                        </h:form>
+                    </p:panel>
+
+
+                </h:panelGrid>
+
+
+
+            </p:panel>
+
+        </h:form>
+
+
+        <br />
+        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
+    </h:body>
+</html>
+
